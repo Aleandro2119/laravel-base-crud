@@ -1,5 +1,8 @@
 @extends('layouts.main')
 @section('content')
+<div class="d-flex justify-content-center p-3">
+    <a class="btn btn-success" href="#">Aggiungi Comics</a>
+</div>
     <div class="row">
         @forelse ($comics as $comic)
             <div class="col-3">
