@@ -1,5 +1,10 @@
 @extends('layouts.main')
 @section('content')
+@if (session('message'))
+        <div class="alert alert-{{ session('type') }}">
+            {{ session('message') }}
+        </div>
+    @endif
 <div class="d-flex justify-content-center p-3">
     <a class="btn btn-success" href="{{ route('comics.create') }}">Aggiungi Comics</a>
 </div>
@@ -17,10 +22,11 @@
                                     <a href="{{ route('comics.edit', $comic) }}" class="btn btn-sm btn-warning me-1">
                                         <i class="fa-solid fa-pencil"></i>
                                     </a>
-                                    <form action="">
-                                        <button type="submit" class="btn btn-sm btn-danger">
-                                            <i class="fa-solid fa-trash"></i>
-                                        </button>
+                                    <form action="{{ route('comics.destroy', $comic->id) }}" method="post">
+                                        @method('DELETE')
+                                        @csrf
+                                        <button class="btn btn-sm btn-danger" type="submit"><i
+                                                class="fa-solid fa-trash"></i></button>
                                     </form>
                                 </div>
                                 <h5 class="card-title">{{ $comic->title }}</h5>
