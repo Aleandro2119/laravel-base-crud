@@ -43,7 +43,7 @@
             </div>
 
         @empty
-            <h1 class="text-center mt-5">Non ci sono Comics</h1>
+            <h1 class="d-flex justify-content-center mt-5">Non ci sono Comics</h1>
         @endforelse
     </div>
 @endsection

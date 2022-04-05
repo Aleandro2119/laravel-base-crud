@@ -12,7 +12,7 @@
                         <a class="nav-link {{ Request::routeIs('home') ? 'active' : '' }}" aria-current="page" href="{{ route('home') }}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ Request::is('comics*') ? 'active' : '' }}" aria-current="page" href="{{ route('comics.index') }}">Home</a>
+                        <a class="nav-link {{ Request::is('comics*') ? 'active' : '' }}" aria-current="page" href="{{ route('comics.index') }}">Comics</a>
                     </li>
                 </ul>
             </div>
