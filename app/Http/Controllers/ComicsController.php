@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Comic;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class ComicsController extends Controller
 {
@@ -42,6 +43,24 @@ class ComicsController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate(
+            [
+                'title' => 'required|string|unique:comics|min:5|max:255',
+                'series' => 'required|string',
+                'sale_date' => 'required|date',
+                'thumb' => 'required|string|unique:comics',
+                'price' => 'required|numeric|min:0.99',
+                'type' => 'required|string',
+                'description' => 'required|string',
+            ],
+            [
+                'required' => 'Il campo :attribute è obbligatorio!',
+                'title.unique' => "Il Fumetto $request->title è già esistente!",
+                'thumb.unique' => "Questa immagine è già stata inserita!",
+                'title.min' => "$request->title è lungo meno di 5 caratteri!"
+            ]
+        );
+
         $data = $request->all();
 
         $comic = Comic::create($data);
@@ -84,6 +103,24 @@ class ComicsController extends Controller
     public function update(Request $request, Comic  $comic)
     {
         //
+        $request->validate(
+            [
+                'title' => ['required', 'string', Rule::unique('comics')->ignore($comic->id), 'min:5', 'max:255'],
+                'series' => 'required|string',
+                'sale_date' => 'required|date',
+                'thumb' => ['required', 'string', Rule::unique('comics')->ignore($comic->id)],
+                'price' => 'required|numeric|min:0.99',
+                'type' => 'required|string',
+                'description' => 'required|string',
+            ],
+            [
+                'required' => 'Il campo :attribute è obbligatorio!',
+                'title.unique' => "Il Fumetto $request->title è già esistente!",
+                'thumb.unique' => "Questa immagine è già stata inserita!",
+                'title.min' => "$request->title è lungo meno di 5 caratteri!"
+            ]
+        );
+
         $data = $request->all();
 
         $comic->update($data);
