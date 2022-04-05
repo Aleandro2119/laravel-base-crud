@@ -13,6 +13,16 @@
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
+                                <div class="interact d-flex justify-content-end">
+                                    <a href="{{ route('comics.edit', $comic) }}" class="btn btn-sm btn-warning me-1">
+                                        <i class="fa-solid fa-pencil"></i>
+                                    </a>
+                                    <form action="">
+                                        <button type="submit" class="btn btn-sm btn-danger">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </button>
+                                    </form>
+                                </div>
                                 <h5 class="card-title">{{ $comic->title }}</h5>
                                 <p class="card-text">Series: <strong>{{ $comic->series }}</strong></p>
                                 <p class="card-text text-muted">€{{ $comic->price }}</p>
