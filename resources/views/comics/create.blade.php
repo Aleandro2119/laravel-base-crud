@@ -2,7 +2,8 @@
 
 @section('content')
     <div class="container">
-        <form action="">
+        <form action="{{ route('comics.store') }}" method="post">
+            @csrf
 
             <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon1">Title</span>

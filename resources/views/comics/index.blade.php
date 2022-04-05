@@ -1,7 +1,7 @@
 @extends('layouts.main')
 @section('content')
 <div class="d-flex justify-content-center p-3">
-    <a class="btn btn-success" href="#">Aggiungi Comics</a>
+    <a class="btn btn-success" href="{{ route('comics.create') }}">Aggiungi Comics</a>
 </div>
     <div class="row">
         @forelse ($comics as $comic)
